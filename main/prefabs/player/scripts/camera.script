@@ -1,0 +1,13 @@
+-- camera.script
+function init(self)
+	self.player = go.get_id("player")   -- или "player1", как у вас на скриншоте
+end
+
+function update(self, dt)
+	local player_pos = go.get_position(self.player)
+	-- Смещение по оси Y на 75 единиц (вверх)
+	local offset_y = 75
+	-- Новая позиция камеры: x как у игрока, y = игрок.y + смещение, z оставляем 0
+	local camera_pos = vmath.vector3(player_pos.x, player_pos.y + offset_y, 0)
+	go.set_position(camera_pos)
+end

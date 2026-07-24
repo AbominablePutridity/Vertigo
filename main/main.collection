@@ -1,0 +1,128 @@
+name: "main"
+instances {
+  id: "ground"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 518.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "player"
+  prototype: "/main/prefabs/player/player.go"
+  children: "spawn_point"
+  position {
+    x: 502.06387
+    y: 441.11874
+  }
+}
+instances {
+  id: "player2"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 648.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "player3"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 780.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "player4"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 959.8907
+    y: 225.52296
+  }
+}
+instances {
+  id: "player5"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1174.8906
+    y: 349.52295
+  }
+}
+instances {
+  id: "flight_knife"
+  prototype: "/main/prefabs/knifes/flight_knife.go"
+  position {
+    x: 620.9161
+    y: 281.43793
+  }
+}
+instances {
+  id: "enemy"
+  prototype: "/main/prefabs/enemy/enemy.go"
+  position {
+    x: 786.5699
+    y: 436.96317
+  }
+}
+instances {
+  id: "background_1"
+  prototype: "/main/prefabs/backgrounds/background_1.go"
+  position {
+    x: -1.471203
+    y: -0.549751
+    z: -7.0
+  }
+  scale3 {
+    x: 0.5
+    y: 0.6
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "go"
+  children: "background_1"
+  data: "components {\n"
+  "  id: \"camera1\"\n"
+  "  component: \"/main/prefabs/player/scripts/camera.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"camera\"\n"
+  "  type: \"camera\"\n"
+  "  data: \"aspect_ratio: 1.0\\n"
+  "fov: 0.7854\\n"
+  "near_z: -1000.0\\n"
+  "far_z: 1000.0\\n"
+  "orthographic_projection: 1\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 502.0
+    y: 331.0
+  }
+}
+embedded_instances {
+  id: "spawn_point"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"white_box\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/main/images/box.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 5.0\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 0.076121\n"
+  "    y: 0.011865\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 23.0
+  }
+}

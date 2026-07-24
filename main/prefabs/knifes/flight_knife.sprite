@@ -1,0 +1,11 @@
+default_animation: "flight_knife"
+material: "/builtins/materials/sprite.material"
+size {
+  x: 20.0
+  y: 10.0
+}
+size_mode: SIZE_MODE_MANUAL
+textures {
+  sampler: "texture_sampler"
+  texture: "/main/images/knife.atlas"
+}
