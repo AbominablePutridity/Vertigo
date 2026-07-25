@@ -52,8 +52,8 @@ instances {
   id: "flight_knife"
   prototype: "/main/prefabs/knifes/flight_knife.go"
   position {
-    x: 620.9161
-    y: 281.43793
+    x: 724.9161
+    y: 222.43793
   }
 }
 instances {
@@ -77,6 +77,30 @@ instances {
     y: 0.6
   }
 }
+instances {
+  id: "player1"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 914.8907
+    y: 81.52296
+  }
+}
+instances {
+  id: "player6"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1050.8907
+    y: 81.52296
+  }
+}
+instances {
+  id: "player7"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1050.8907
+    y: 155.52296
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "go"
@@ -93,6 +117,7 @@ embedded_instances {
   "near_z: -1000.0\\n"
   "far_z: 1000.0\\n"
   "orthographic_projection: 1\\n"
+  "orthographic_mode: ORTHO_MODE_AUTO_COVER\\n"
   "\"\n"
   "}\n"
   ""

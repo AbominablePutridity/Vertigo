@@ -90,6 +90,9 @@ function on_input(self, action_id, action)
 			v.y = 500
 			go.set("#player_collider", "linear_velocity", v)
 			self.count_of_jump = self.count_of_jump - 1
+
+			--Вызываем метод с анимацией игрока
+			play_jump_animation()
 		end
 	end
 
@@ -107,4 +110,17 @@ function on_message(self, message_id, message, sender) --метод получе
 		-- Просто проверяем, с кем столкнулись
 		self.count_of_jump = 1;
 	end
+end
+
+--Функция, проигрывающая анимацию прыжка персонажа
+function play_jump_animation()
+	--меняем спрайт игрока на прыжок
+	-- "sprite" — это id компонента спрайта на игровом объекте
+	-- "new_anim_id" — имя (id) нового спрайта/анимации внутри нашего атласа игрока
+	sprite.play_flipbook("#player_sprite", "PlayerJump")
+
+	timer.delay(1, false, function()
+		-- Этот код выполнится ровно через 1 секунду
+		sprite.play_flipbook("#player_sprite", "Player")
+	end)
 end

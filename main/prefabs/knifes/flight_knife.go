@@ -17,7 +17,7 @@ embedded_components {
   "mass: 0.5\n"
   "friction: 0.05\n"
   "restitution: 0.7\n"
-  "group: \"default\"\n"
+  "group: \"knife\"\n"
   "mask: \"default\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"

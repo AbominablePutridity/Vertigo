@@ -1,0 +1,76 @@
+function init(self)
+	self.health = 3 -- здоровье врага
+	
+	-- Add initialization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function late_update(self, dt)
+	-- This function is called at the end of update cycle but before render
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function fixed_update(self, dt)
+	-- This function is called if 'Fixed Update Frequency' is enabled in the Engine section of game.project
+	-- Can be coupled with fixed updates of the physics simulation if 'Use Fixed Timestep' is enabled in
+	-- Physics section of game.project
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then
+		-- сравниваем ГРУППУ столкновения, а не динамический ID объекта
+		if message.other_group == hash("knife") then 
+			print("Враг потерял здоровье")
+			self.health = self.health - 1
+
+			--создаем толчок
+			-- Вычисляем направление (1 вправо, -1 влево) на основе взаимного расположения
+			local dir_x = (go.get_position().x - message.other_position.x) > 0 and 1 or -1
+
+			-- Задаем скорость по оси X (700 — сила толчка)
+			go.set("#enem", "linear_velocity", vmath.vector3(dir_x * 700, 0, 0))
+			
+			--вызываем анимацию получения урона
+			take_damage_anim(self.health)
+		end
+	end
+end
+
+function take_damage_anim(health)
+	if health == 2 then
+		sprite.play_flipbook("#enemy_sprite", "DamegedEnem1")
+	elseif health == 1 then
+		sprite.play_flipbook("#enemy_sprite", "DamegedEnem2")
+	elseif health == 0 then
+		sprite.play_flipbook("#enemy_sprite", "DamegedEnem3")
+	end
+
+	if health > 0 then
+		timer.delay(2, false, function()
+			-- Этот код выполнится ровно через 2 секунды
+			go.set_rotation(vmath.quat(0, 0, 0, 1)) --обнуляем поворот после попадания (на случай если враг упал после удара)
+		end)
+	else
+		-- 3 — это время в секундах, через которое коллайдер уберется
+		timer.delay(3, false, function()
+			msg.post("#enem", "disable")
+		end)
+	end
+end

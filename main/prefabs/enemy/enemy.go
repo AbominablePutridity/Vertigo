@@ -1,10 +1,14 @@
 components {
-  id: "enemy"
+  id: "enemy_sprite"
   component: "/main/prefabs/enemy/enemy.sprite"
   position {
     x: 0.007142857
     y: 0.025
   }
+}
+components {
+  id: "enemy_controller"
+  component: "/main/prefabs/enemy/scripts/enemy_controller.script"
 }
 embedded_components {
   id: "enem"
@@ -15,6 +19,7 @@ embedded_components {
   "restitution: 0.0\n"
   "group: \"default\"\n"
   "mask: \"default\"\n"
+  "mask: \"knife\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

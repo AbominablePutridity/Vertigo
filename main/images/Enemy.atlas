@@ -1,4 +1,16 @@
 images {
   image: "/main/images/Enemy.png"
 }
+images {
+  image: "/main/images/EnemyJump.png"
+}
+images {
+  image: "/main/images/DamegedEnem2.png"
+}
+images {
+  image: "/main/images/DamegedEnem3.png"
+}
+images {
+  image: "/main/images/DamegedEnem1.png"
+}
 extrude_borders: 2
