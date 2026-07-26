@@ -36,16 +36,16 @@ instances {
   id: "player4"
   prototype: "/main/prefabs/platform/platform.go"
   position {
-    x: 959.8907
-    y: 225.52296
+    x: 1314.8906
+    y: 276.52295
   }
 }
 instances {
   id: "player5"
   prototype: "/main/prefabs/platform/platform.go"
   position {
-    x: 1174.8906
-    y: 349.52295
+    x: 1179.8906
+    y: 217.52295
   }
 }
 instances {
@@ -60,7 +60,7 @@ instances {
   id: "enemy"
   prototype: "/main/prefabs/enemy/enemy.go"
   position {
-    x: 786.5699
+    x: 1189.5698
     y: 436.96317
   }
 }
@@ -101,6 +101,22 @@ instances {
     y: 155.52296
   }
 }
+instances {
+  id: "caution"
+  prototype: "/main/prefabs/platform/caution.go"
+  position {
+    x: 635.65955
+    y: 152.01056
+  }
+}
+instances {
+  id: "caution1"
+  prototype: "/main/prefabs/platform/caution.go"
+  position {
+    x: 1357.6595
+    y: 355.01056
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "go"
@@ -131,19 +147,19 @@ embedded_instances {
   data: "embedded_components {\n"
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"white_box\\\"\\n"
+  "  data: \"default_animation: \\\"flight_knife\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/main/images/box.atlas\\\"\\n"
+  "  texture: \\\"/main/images/knife.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
   "    x: 5.0\n"
   "  }\n"
   "  scale {\n"
-  "    x: 0.076121\n"
-  "    y: 0.011865\n"
+  "    x: 0.153\n"
+  "    y: 0.12\n"
   "  }\n"
   "}\n"
   ""

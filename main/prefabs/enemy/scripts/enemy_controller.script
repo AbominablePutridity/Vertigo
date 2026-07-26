@@ -1,36 +1,25 @@
 function init(self)
 	self.health = 3 -- здоровье врага
-	
-	-- Add initialization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
+	self.isRight = false -- переменная определяющая сторону
+	self.walk_speed = 30
+	self.mode = 0 -- режим поведения (0 - прогулка, 1 - погоня с атакой, -1 - ничего - падение)
 
-function final(self)
-	-- Add finalization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	-- Запоминаем самый первый X при старте игры, чтобы было с чем сравнивать (для прыжка - враг прыгает, если предыдущая координата по x не изменилась)
+	self.last_x = go.get_position().x
+
+	-- Сохраняем ID игрока в переменную (хеш-строка)
+	self.player_id = hash("/player")
+	self.vision_distance = 230
 end
 
 function update(self, dt)
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
+	check_player_distance(self) -- чекаем расстояние до игрока
+	
+	if self.mode == 0 then
+		walk(self) -- функция прогулки врага
 
-function late_update(self, dt)
-	-- This function is called at the end of update cycle but before render
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
-
-function fixed_update(self, dt)
-	-- This function is called if 'Fixed Update Frequency' is enabled in the Engine section of game.project
-	-- Can be coupled with fixed updates of the physics simulation if 'Use Fixed Timestep' is enabled in
-	-- Physics section of game.project
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+		jump(self)
+	end
 end
 
 function on_message(self, message_id, message, sender)
@@ -48,29 +37,145 @@ function on_message(self, message_id, message, sender)
 			go.set("#enem", "linear_velocity", vmath.vector3(dir_x * 700, 0, 0))
 			
 			--вызываем анимацию получения урона
-			take_damage_anim(self.health)
+			take_damage_anim(self)
+		end
+	end
+
+	-- Проверяем, что произошло столкновение типа "триггер"
+	if message_id == hash("trigger_response") then
+
+		-- Проверяем, что враг коснулся именно группы patrol_wall (нашей таблички)
+		if message.group == hash("patrol_wall") then
+
+			-- message.enter равен true в самый первый кадр касания
+			if message.enter then
+				-- Разворачиваем врага!
+				rotate_opposite_side(self)
+			end
 		end
 	end
 end
 
-function take_damage_anim(health)
-	if health == 2 then
+-- Задать спрайт врагу в зависимости от здоровья
+function set_sprite_of_damage(self)
+	if self.health == 3 then
+		sprite.play_flipbook("#enemy_sprite", "Enemy")
+	elseif self.health == 2 then
 		sprite.play_flipbook("#enemy_sprite", "DamegedEnem1")
-	elseif health == 1 then
+	elseif self.health == 1 then
 		sprite.play_flipbook("#enemy_sprite", "DamegedEnem2")
-	elseif health == 0 then
+	elseif self.health <= 0 then
 		sprite.play_flipbook("#enemy_sprite", "DamegedEnem3")
 	end
+end
 
-	if health > 0 then
+-- Функция получения урона
+function take_damage_anim(self)
+	self.mode = -1
+
+	-- задаем скин повреждения в сооответствии со здоровьем
+	set_sprite_of_damage(self);
+
+	--if self.health > 0 then
 		timer.delay(2, false, function()
 			-- Этот код выполнится ровно через 2 секунды
-			go.set_rotation(vmath.quat(0, 0, 0, 1)) --обнуляем поворот после попадания (на случай если враг упал после удара)
+
+			-- Восстанавливаем режим только если враг всё ещё жив (если в течение таймера)
+			if self.health > 0 then
+				go.set_rotation(vmath.quat(0, 0, 0, 1)) --обнуляем поворот после попадания (на случай если враг упал после удара)
+				self.mode = 0; -- после подьема задаем поведенческий режим на ходьбу
+			else
+				self.mode = -1;
+
+				-- 3 — это время в секундах, через которое коллайдер уберется
+				timer.delay(3, false, function()
+					msg.post("#enem", "disable")
+				end)
+
+				msg.post("#enemy_controller", "disable")
+			end
 		end)
+	--else
+	--end
+end
+
+-- отзеркаливание врага в противоположную сторону
+function rotate_opposite_side(self)
+	if self.isRight == true then -- если сторона правая
+		self.isRight = false
+		sprite.set_hflip("#enemy_sprite", false) -- зеркаалим врага влево
 	else
-		-- 3 — это время в секундах, через которое коллайдер уберется
-		timer.delay(3, false, function()
-			msg.post("#enem", "disable")
+		self.isRight = true
+		sprite.set_hflip("#enemy_sprite", true) -- зеркаалим врага вправо
+	end
+end
+
+-- Функция хотьбы врага
+function walk(self)
+	go.set_rotation(vmath.quat(0, 0, 0, 1)) --обнуляем поворот
+	
+	local v = go.get("#enem", "linear_velocity") -- берем компонент движения коллайдера
+
+	-- Двигаем или останавливаем куб в зависимости от сохраненного направления
+	v.x = 0
+	
+	if self.isRight == true then -- если сторона правая
+		v.x = 1 * self.walk_speed
+	else
+		v.x = -1 * self.walk_speed
+	end
+
+	go.set("#enem", "linear_velocity", v)
+end
+
+-- Функция прыжка врага
+function jump(self)
+	local pos = go.get_position()
+
+	-- ЧИТАЕМ СКОРОСТЬ прямо из физического тела, чтобы узнать движется ли враг
+	local v = go.get("#enem", "linear_velocity") 
+
+	-- Если скорость по X задана (враг должен идти) И координата X не сдвинулась
+	if v.x ~= 0 and math.abs(pos.x - self.last_x) < 0.01 then -- если задаваемая скорость нелу не 0 и расстояние с предыдущей точки и текущей по x не изменилась - прыгаем
+		v.y = 350 -- Задаем скорость прыжка вверх
+
+		timer.delay(1, false, function()
+			
+			-- возвращаем скин повреждения в сооответствии со здоровьем
+			set_sprite_of_damage(self);
+			
 		end)
+
+		if self.health > 0 then
+			-- Анимация прыжка
+			sprite.play_flipbook("#enemy_sprite", "EnemyJump")
+		end
+		go.set("#enem", "linear_velocity", v) -- Применяем её к физическому телу
+	end
+
+	-- В самом конце записываем текущий X для следующего кадра
+	self.last_x = pos.x
+end
+
+function check_player_distance(self)
+	if self.mode ~= -1 then -- если по поведению враг не ранен и не убит (-1 = ранен или убит) - высчитываем расстояние до игрока
+		-- Берем позицию текущего объекта (Врага)
+		local enemy_pos = go.get_position()
+
+		-- Берем позицию Игрока, передав его сохраненный ID
+		local player_pos = go.get_position(self.player_id)
+
+		-- Вычисляем расстояние между ними (длину вектора разности)
+		local distance = vmath.length(enemy_pos - player_pos)
+
+		-- Теперь проверяем дистанцию (например, меньше 150 пикселей)
+		if distance < self.vision_distance then
+			print("Игрок подошел близко! Расстояние: " .. distance)
+			-- Здесь будет логика разворота или атаки
+
+			self.mode = 1
+		else
+			self.mode = 0
+		end
 	end
 end

@@ -1,0 +1,7 @@
+images {
+  image: "/main/images/Bullet.png"
+}
+images {
+  image: "/main/images/UsedBullet.png"
+}
+extrude_borders: 2
