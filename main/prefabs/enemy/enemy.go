@@ -38,24 +38,3 @@ embedded_components {
   "}\n"
   ""
 }
-embedded_components {
-  id: "sprite"
-  type: "sprite"
-  data: "default_animation: \"Pistol\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
-  "size {\n"
-  "  x: 40.0\n"
-  "  y: 20.0\n"
-  "}\n"
-  "size_mode: SIZE_MODE_MANUAL\n"
-  "textures {\n"
-  "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/main/images/Pistol.atlas\"\n"
-  "}\n"
-  ""
-  position {
-    x: -20.0
-    y: -16.0
-    z: 7.0
-  }
-}

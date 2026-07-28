@@ -104,9 +104,11 @@ function rotate_opposite_side(self)
 	if self.isRight == true then -- если сторона правая
 		self.isRight = false
 		sprite.set_hflip("#enemy_sprite", false) -- зеркаалим врага влево
+		sprite.set_hflip("pistol#pistol_sprite", false) -- зеркаалим пистолет врага влево
 	else
 		self.isRight = true
 		sprite.set_hflip("#enemy_sprite", true) -- зеркаалим врага вправо
+		sprite.set_hflip("pistol#pistol_sprite", true) -- зеркаалим пистолет врага вправо
 	end
 end
 
@@ -171,11 +173,47 @@ function check_player_distance(self)
 		-- Теперь проверяем дистанцию (например, меньше 150 пикселей)
 		if distance < self.vision_distance then
 			print("Игрок подошел близко! Расстояние: " .. distance)
-			-- Здесь будет логика разворота или атаки
-
+			-- Здесь будет логика атаки
+			attack_behaviour(self)
+			
 			self.mode = 1
 		else
 			self.mode = 0
 		end
 	end
 end
+
+function attack_behaviour(self)
+	local enemy_pos = go.get_position()
+	local target_pos = go.get_position(self.player_id)
+	
+	local dx = target_pos.x - enemy_pos.x
+	local dy = target_pos.y - enemy_pos.y
+	local angle = math.atan2(dy, dx)
+
+	local angle = math.atan2(dy, dx)
+
+	if dx < 0 then	
+		angle = angle - math.pi
+		sprite.set_hflip("pistol#pistol_sprite", false)
+		sprite.set_hflip(".", false)
+	else
+		sprite.set_hflip("pistol#pistol_sprite", true)
+		sprite.set_hflip(".", true)
+	end
+	
+	go.set_rotation(vmath.quat_rotation_z(angle), "pistol")
+end
+
+--function attack_behaviour(self)
+	-- Берём позицию врага (или самого пистолета, если он смещён)
+	--local enemy_pos = go.get_position()
+	--local target_pos = go.get_position(self.player_id)
+
+	--local dx = target_pos.x - enemy_pos.x
+	--local dy = target_pos.y - enemy_pos.y
+	--local angle = math.atan2(dy, dx)   -- угол в радианах
+
+	-- Поворачиваем спрайт пистолета (компонент внутри дочернего объекта)
+	--sprite.set_rotation("pistol", angle)
+--end

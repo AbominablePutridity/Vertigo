@@ -57,14 +57,6 @@ instances {
   }
 }
 instances {
-  id: "enemy"
-  prototype: "/main/prefabs/enemy/enemy.go"
-  position {
-    x: 1189.5698
-    y: 436.96317
-  }
-}
-instances {
   id: "background_1"
   prototype: "/main/prefabs/backgrounds/background_1.go"
   position {
@@ -115,6 +107,22 @@ instances {
   position {
     x: 1357.6595
     y: 355.01056
+  }
+}
+instances {
+  id: "bullet"
+  prototype: "/main/prefabs/bullet/bullet.go"
+  position {
+    x: 832.6792
+    y: 243.07472
+  }
+}
+collection_instances {
+  id: "enemy1"
+  collection: "/main/prefabs/enemy/enemy_prefab.collection"
+  position {
+    x: 1169.0
+    y: 520.0
   }
 }
 scale_along_z: 0

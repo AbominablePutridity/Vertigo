@@ -1,13 +1,15 @@
 local b2d = require "b2d"
 
 function init(self)
+	self.other_collision_id = "enemy"
+	
 	-- Получаем тело и сохраняем в self, чтобы использовать в других методах
 	local body = b2d.get_body("#collisionobject")
 	if body then
 		b2d.body.set_gravity_scale(body, 0)
 		self.body = body   -- сохраняем в self
 	else
-		print("❌ Тело не найдено! Проверьте, что коллайдер типа Dynamic.")
+		print("Тело не найдено! Проверьте, что коллайдер типа Dynamic.")
 		return
 	end
 
@@ -28,7 +30,7 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("collision_response") then
 		-- Сравниваем хеш другого объекта с хешем "/enemy"
-		if message.other_id == hash("/enemy") then
+		if message.other_id == self.other_collision_id then
 			print("Столкновение с врагом!")
 			if self.body then
 				b2d.body.set_gravity_scale(self.body, 1)
