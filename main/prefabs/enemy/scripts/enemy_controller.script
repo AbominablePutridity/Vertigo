@@ -8,7 +8,7 @@ function init(self)
 	self.last_x = go.get_position().x
 
 	-- Сохраняем ID игрока в переменную (хеш-строка)
-	self.player_id = hash("/player")
+	self.player_id = hash("/player_prefab/player")
 	self.vision_distance = 230
 end
 
@@ -59,13 +59,13 @@ end
 -- Задать спрайт врагу в зависимости от здоровья
 function set_sprite_of_damage(self)
 	if self.health == 3 then
-		sprite.play_flipbook("#enemy_sprite", "Enemy")
+		sprite.play_flipbook("sprite_holder#enemy_sprite", "Enemy")
 	elseif self.health == 2 then
-		sprite.play_flipbook("#enemy_sprite", "DamegedEnem1")
+		sprite.play_flipbook("sprite_holder#enemy_sprite", "DamegedEnem1")
 	elseif self.health == 1 then
-		sprite.play_flipbook("#enemy_sprite", "DamegedEnem2")
+		sprite.play_flipbook("sprite_holder#enemy_sprite", "DamegedEnem2")
 	elseif self.health <= 0 then
-		sprite.play_flipbook("#enemy_sprite", "DamegedEnem3")
+		sprite.play_flipbook("sprite_holder#enemy_sprite", "DamegedEnem3")
 	end
 end
 
@@ -87,11 +87,14 @@ function take_damage_anim(self)
 			else
 				self.mode = -1;
 
+				msg.post("sprite_holder#glitch_effect", "disable_glitch")
+				
 				-- 3 — это время в секундах, через которое коллайдер уберется
 				timer.delay(3, false, function()
 					msg.post("#enem", "disable")
 				end)
 
+				
 				msg.post("#enemy_controller", "disable")
 			end
 		end)
@@ -103,11 +106,11 @@ end
 function rotate_opposite_side(self)
 	if self.isRight == true then -- если сторона правая
 		self.isRight = false
-		sprite.set_hflip("#enemy_sprite", false) -- зеркаалим врага влево
+		sprite.set_hflip("sprite_holder#enemy_sprite", false) -- зеркаалим врага влево
 		sprite.set_hflip("pistol#pistol_sprite", false) -- зеркаалим пистолет врага влево
 	else
 		self.isRight = true
-		sprite.set_hflip("#enemy_sprite", true) -- зеркаалим врага вправо
+		sprite.set_hflip("sprite_holder#enemy_sprite", true) -- зеркаалим врага вправо
 		sprite.set_hflip("pistol#pistol_sprite", true) -- зеркаалим пистолет врага вправо
 	end
 end
@@ -150,7 +153,7 @@ function jump(self)
 
 		if self.health > 0 then
 			-- Анимация прыжка
-			sprite.play_flipbook("#enemy_sprite", "EnemyJump")
+			sprite.play_flipbook("sprite_holder#enemy_sprite", "EnemyJump")
 		end
 		go.set("#enem", "linear_velocity", v) -- Применяем её к физическому телу
 	end
@@ -196,10 +199,10 @@ function attack_behaviour(self)
 	if dx < 0 then	
 		angle = angle - math.pi
 		sprite.set_hflip("pistol#pistol_sprite", false)
-		sprite.set_hflip(".", false)
+		sprite.set_hflip("sprite_holder#enemy_sprite", false)
 	else
 		sprite.set_hflip("pistol#pistol_sprite", true)
-		sprite.set_hflip(".", true)
+		sprite.set_hflip("sprite_holder#enemy_sprite", true)
 	end
 	
 	go.set_rotation(vmath.quat_rotation_z(angle), "pistol")

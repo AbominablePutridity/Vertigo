@@ -3,10 +3,7 @@ instances {
   id: "player"
   prototype: "/main/prefabs/player/player.go"
   children: "spawn_point"
-  position {
-    x: 502.06387
-    y: 441.11874
-  }
+  children: "sprite_holder"
 }
 scale_along_z: 0
 embedded_instances {
@@ -37,4 +34,25 @@ embedded_instances {
   position {
     x: 23.0
   }
+}
+embedded_instances {
+  id: "sprite_holder"
+  data: "components {\n"
+  "  id: \"player_sprite\"\n"
+  "  component: \"/main/prefabs/player/player_sprite.sprite\"\n"
+  "  position {\n"
+  "    x: -0.00547395\n"
+  "    y: 7.00189\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 1.362431\n"
+  "    y: 1.159354\n"
+  "    z: 1.0E-6\n"
+  "  }\n"
+  "}\n"
+  "components {\n"
+  "  id: \"glitch_effect\"\n"
+  "  component: \"/main/prefabs/glitch_effect.script\"\n"
+  "}\n"
+  ""
 }

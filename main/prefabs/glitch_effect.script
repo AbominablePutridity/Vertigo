@@ -1,0 +1,43 @@
+function init(self)
+	self.sprite_holder = "sprite_holder"
+	self.shake_intensivity = 1
+
+	-- Добавляем переменные для таймера
+	self.shake_timer = 0
+	-- Задержка в секундах (0.5 — очень быстрая тряска, 0.2 — медленная)
+	self.shake_delay = 0.2
+
+	-- По умолчанию скрипт работает
+	self.is_active = true 
+end
+
+function update(self, dt)
+	if self.is_active then
+		-- Накапливаем прошедшее время
+		self.shake_timer = self.shake_timer + dt
+
+		-- Если время ожидания вышло
+		if self.shake_timer >= self.shake_delay then
+			-- Сбрасываем таймер (или вычитаем self.shake_delay для точности)
+			self.shake_timer = 0
+
+			-- Генерируем новые смещения
+			local offset_x = (math.random() - 0.5) * self.shake_intensivity * 2
+			local offset_y = (math.random() - 0.5) * self.shake_intensivity * 2
+
+			-- Применяем позицию
+			go.set_position(vmath.vector3(offset_x, offset_y, 0), self.sprite_holder)
+		end
+	end
+end
+
+function on_message(self, message_id, message, sender)
+		-- Ловим ваши кастомные сообщения для включения/выключения
+		if message_id == hash("disable_glitch") then
+			self.is_active = false
+			-- На всякий случай возвращаем спрайт на место
+			go.set_position(vmath.vector3(0, 0, 0)) 
+		elseif message_id == hash("enable_glitch") then
+			self.is_active = true
+		end
+end

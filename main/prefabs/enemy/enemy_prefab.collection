@@ -3,6 +3,10 @@ instances {
   id: "enemy"
   prototype: "/main/prefabs/enemy/enemy.go"
   children: "pistol"
+  children: "sprite_holder"
+  position {
+    z: 1.0
+  }
 }
 scale_along_z: 0
 embedded_instances {
@@ -32,4 +36,20 @@ embedded_instances {
   position {
     y: -15.0
   }
+}
+embedded_instances {
+  id: "sprite_holder"
+  data: "components {\n"
+  "  id: \"enemy_sprite\"\n"
+  "  component: \"/main/prefabs/enemy/enemy.sprite\"\n"
+  "  position {\n"
+  "    x: 0.007142857\n"
+  "    y: 0.025\n"
+  "  }\n"
+  "}\n"
+  "components {\n"
+  "  id: \"glitch_effect\"\n"
+  "  component: \"/main/prefabs/glitch_effect.script\"\n"
+  "}\n"
+  ""
 }

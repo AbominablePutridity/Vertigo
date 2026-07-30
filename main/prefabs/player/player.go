@@ -1,17 +1,4 @@
 components {
-  id: "player_sprite"
-  component: "/main/prefabs/player/player_sprite.sprite"
-  position {
-    x: -0.00547395
-    y: 7.00189
-  }
-  scale {
-    x: 1.362431
-    y: 1.159354
-    z: 1.0E-6
-  }
-}
-components {
   id: "player"
   component: "/main/prefabs/player/scripts/player.script"
 }

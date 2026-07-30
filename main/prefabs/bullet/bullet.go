@@ -1,3 +1,21 @@
+components {
+  id: "physic_throwing"
+  component: "/main/prefabs/physic_throwing.script"
+  properties {
+    id: "speed"
+    value: "500.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
+}
+components {
+  id: "flight_weapon"
+  component: "/main/prefabs/flight_weapon.script"
+  properties {
+    id: "is_knife"
+    value: "false"
+    type: PROPERTY_TYPE_BOOLEAN
+  }
+}
 embedded_components {
   id: "bullet_sprite"
   type: "sprite"
@@ -13,12 +31,16 @@ embedded_components {
   "  texture: \"/main/images/Bullet.atlas\"\n"
   "}\n"
   ""
+  rotation {
+    y: 1.0
+    w: 6.123234E-17
+  }
 }
 embedded_components {
   id: "collisionobject"
   type: "collisionobject"
   data: "type: COLLISION_OBJECT_TYPE_DYNAMIC\n"
-  "mass: 1.0\n"
+  "mass: 0.5\n"
   "friction: 0.1\n"
   "restitution: 0.5\n"
   "group: \"default\"\n"

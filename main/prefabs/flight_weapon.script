@@ -1,0 +1,43 @@
+local b2d = require "b2d"
+
+go.property("is_knife", true)
+
+function init(self)
+	-- Получаем тело и сохраняем в self, чтобы использовать в других методах
+	local body = b2d.get_body("#collisionobject")
+	if body then
+		b2d.body.set_gravity_scale(body, 0)
+		self.body = body   -- сохраняем в self
+	else
+		print("Тело не найдено! Проверьте, что коллайдер типа Dynamic.")
+		return
+	end
+	
+	self.other_group_enemy = hash("enemy")
+	self.other_group_player = hash("player")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then
+		
+		if self.is_knife then -- если обьект - нож игрока
+			-- Сравниваем хеш другого объекта с хешем "/enemy"
+			if message.other_group == self.other_group_enemy then
+				print("Столкновение с врагом!")
+				if self.body then
+					b2d.body.set_gravity_scale(self.body, 1)
+				end
+			else
+				--print("Столкновение с другим объектом, other_id =", message.other_id)
+			end
+		else
+			b2d.body.set_gravity_scale(self.body, 1)
+
+			sprite.play_flipbook("#bullet_sprite", "UsedBullet")
+			
+			-- if message.other_group == self.other_group_player then
+				
+			-- end	
+		end
+	end
+end

@@ -12,7 +12,11 @@ components {
 }
 components {
   id: "flight_knife1"
-  component: "/main/prefabs/knifes/scripts/flight_knife.script"
+  component: "/main/prefabs/flight_weapon.script"
+}
+components {
+  id: "physic_throwing"
+  component: "/main/prefabs/physic_throwing.script"
 }
 embedded_components {
   id: "collisionobject"

@@ -1,12 +1,4 @@
 components {
-  id: "enemy_sprite"
-  component: "/main/prefabs/enemy/enemy.sprite"
-  position {
-    x: 0.007142857
-    y: 0.025
-  }
-}
-components {
   id: "enemy_controller"
   component: "/main/prefabs/enemy/scripts/enemy_controller.script"
 }

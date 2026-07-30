@@ -1,6 +1,6 @@
 -- camera.script
 function init(self)
-	self.player = go.get_id("player")   -- или "player1", как у вас на скриншоте
+	self.player = go.get_id("player_prefab/player")
 end
 
 function update(self, dt)
