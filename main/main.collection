@@ -56,8 +56,8 @@ instances {
     z: -7.0
   }
   scale3 {
-    x: 0.5
-    y: 0.6
+    x: 0.77
+    y: 0.91
   }
 }
 instances {
@@ -140,6 +140,7 @@ embedded_instances {
   "near_z: -1000.0\\n"
   "far_z: 1000.0\\n"
   "orthographic_projection: 1\\n"
+  "orthographic_zoom: 0.65\\n"
   "orthographic_mode: ORTHO_MODE_AUTO_COVER\\n"
   "\"\n"
   "}\n"

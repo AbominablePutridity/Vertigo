@@ -9,7 +9,11 @@ function init(self)
 
 	-- Сохраняем ID игрока в переменную (хеш-строка)
 	self.player_id = hash("/player_prefab/player")
-	self.vision_distance = 230
+	self.vision_distance = 300
+
+	-- Стрельба
+	self.can_shoot = true  -- флаг, разрешающий выстрел
+	self.cooldown = 0.5    -- время задержки в секундах
 end
 
 function update(self, dt)
@@ -197,26 +201,35 @@ function attack_behaviour(self)
 	local angle = math.atan2(dy, dx)
 
 	if dx < 0 then	
-		angle = angle - math.pi
-		sprite.set_hflip("pistol#pistol_sprite", false)
+		--зеркалим изображение пистолета и 
+		sprite.set_vflip("pistol#pistol_sprite", true)
+		sprite.set_hflip("pistol#pistol_sprite", true)
 		sprite.set_hflip("sprite_holder#enemy_sprite", false)
 	else
+		sprite.set_vflip("pistol#pistol_sprite", false)
 		sprite.set_hflip("pistol#pistol_sprite", true)
 		sprite.set_hflip("sprite_holder#enemy_sprite", true)
 	end
 	
 	go.set_rotation(vmath.quat_rotation_z(angle), "pistol")
+
+	-- Открываем стрельбу по игроку
+	fire(self)
 end
 
---function attack_behaviour(self)
-	-- Берём позицию врага (или самого пистолета, если он смещён)
-	--local enemy_pos = go.get_position()
-	--local target_pos = go.get_position(self.player_id)
+function fire(self)
+	-- Проверяем, можно ли стрелять
+	if self.can_shoot then
+		self.can_shoot = false -- временно запрещаем стрельбу
 
-	--local dx = target_pos.x - enemy_pos.x
-	--local dy = target_pos.y - enemy_pos.y
-	--local angle = math.atan2(dy, dx)   -- угол в радианах
+		-- Ваш код создания пули
+		local spawn_pos = go.get_world_position("pistol") 
+		local spawn_rot = go.get_world_rotation("pistol")
+		factory.create("pistol#flight_bullet_factory", spawn_pos, spawn_rot)
 
-	-- Поворачиваем спрайт пистолета (компонент внутри дочернего объекта)
-	--sprite.set_rotation("pistol", angle)
---end
+		-- Запускаем таймер, который вернет возможность стрелять
+		timer.delay(self.cooldown, false, function()
+			self.can_shoot = true
+		end)
+	end
+end
