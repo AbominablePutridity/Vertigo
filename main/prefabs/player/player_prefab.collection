@@ -54,5 +54,13 @@ embedded_instances {
   "  id: \"glitch_effect\"\n"
   "  component: \"/main/prefabs/glitch_effect.script\"\n"
   "}\n"
+  "components {\n"
+  "  id: \"jump\"\n"
+  "  component: \"/main/prefabs/particles/jump.particlefx\"\n"
+  "  position {\n"
+  "    y: -51.0\n"
+  "    z: 7.0\n"
+  "  }\n"
+  "}\n"
   ""
 }

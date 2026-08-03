@@ -77,6 +77,9 @@ end
 function take_damage_anim(self)
 	self.mode = -1
 
+	-- Создание дымки повреждения
+	particlefx.play("sprite_holder#kick")
+	
 	-- задаем скин повреждения в сооответствии со здоровьем
 	set_sprite_of_damage(self);
 
@@ -222,7 +225,10 @@ function fire(self)
 	if self.can_shoot then
 		self.can_shoot = false -- временно запрещаем стрельбу
 
-		-- Ваш код создания пули
+		-- Создание дыма от выстрела
+		particlefx.play("pistol#fire")
+		
+		-- Код создания пули
 		local spawn_pos = go.get_world_position("pistol") 
 		local spawn_rot = go.get_world_rotation("pistol")
 		factory.create("pistol#flight_bullet_factory", spawn_pos, spawn_rot)

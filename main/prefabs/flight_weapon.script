@@ -15,6 +15,11 @@ function init(self)
 	
 	self.other_group_enemy = hash("enemy")
 	self.other_group_player = hash("player")
+
+	-- Удаление через 15 секунд
+	timer.delay(15, false, function()
+		go.delete()
+	end)
 end
 
 function on_message(self, message_id, message, sender)

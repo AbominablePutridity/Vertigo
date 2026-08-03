@@ -11,7 +11,15 @@ instances {
 scale_along_z: 0
 embedded_instances {
   id: "pistol"
-  data: "embedded_components {\n"
+  data: "components {\n"
+  "  id: \"fire\"\n"
+  "  component: \"/main/prefabs/particles/fire.particlefx\"\n"
+  "  position {\n"
+  "    x: -2.0\n"
+  "    z: 6.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
   "  id: \"pistol_sprite\"\n"
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"Pistol\\\"\\n"
@@ -56,6 +64,10 @@ embedded_instances {
   "components {\n"
   "  id: \"glitch_effect\"\n"
   "  component: \"/main/prefabs/glitch_effect.script\"\n"
+  "}\n"
+  "components {\n"
+  "  id: \"kick\"\n"
+  "  component: \"/main/prefabs/particles/kick.particlefx\"\n"
   "}\n"
   ""
 }

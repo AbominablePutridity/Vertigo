@@ -119,6 +119,8 @@ function play_jump_animation()
 	-- "new_anim_id" — имя (id) нового спрайта/анимации внутри нашего атласа игрока
 	sprite.play_flipbook("sprite_holder#player_sprite", "PlayerJump")
 
+	particlefx.play("sprite_holder#jump");
+	
 	timer.delay(1, false, function()
 		-- Этот код выполнится ровно через 1 секунду
 		sprite.play_flipbook("sprite_holder#player_sprite", "Player")
