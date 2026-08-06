@@ -24,3 +24,6 @@ scale_mode = stretch
 [project]
 title = Vertigo
 
+[resource]
+uri = 
+

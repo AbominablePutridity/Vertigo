@@ -1,0 +1,4 @@
+images {
+  image: "/main/images/Tree.png"
+}
+extrude_borders: 2

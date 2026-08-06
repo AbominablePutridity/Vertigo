@@ -1,0 +1,24 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("touch") and action.pressed then
+		local button_node = gui.get_node("start_button")
+
+		if gui.pick_node(button_node, action.x, action.y) then
+			gui.set_scale(button_node, vmath.vector3(0.9, 0.9, 1.0))
+			gui.animate(button_node,
+			gui.PROP_SCALE,
+			vmath.vector3(1.0, 1.0, 1.0),
+			gui.EASING_OUTBOUNCE,
+			0.2)
+
+			msg.post("main:/loader#scene_controller", "start_game", {
+				level = "lvl1"
+			})
+
+			return true
+		end
+	end
+end

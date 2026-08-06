@@ -1,0 +1,380 @@
+name: "lvl_1"
+instances {
+  id: "background_1"
+  prototype: "/main/prefabs/backgrounds/background_1.go"
+  position {
+    x: -1.471203
+    y: -0.549751
+    z: -7.0
+  }
+  scale3 {
+    x: 0.77
+    y: 0.91
+  }
+}
+instances {
+  id: "Grass"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 483.4561
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass1"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 530.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass2"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 581.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass3"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 629.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass4"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 676.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass5"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 724.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass6"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 770.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "player4"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1314.8906
+    y: 276.52295
+  }
+}
+instances {
+  id: "player5"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1179.8906
+    y: 217.52295
+  }
+}
+instances {
+  id: "player6"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 999.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "player7"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1050.8907
+    y: 155.52296
+  }
+}
+instances {
+  id: "Tree"
+  prototype: "/main/prefabs/backgrounds/additions/Tree.go"
+  position {
+    x: 545.11096
+    y: 259.19595
+  }
+}
+instances {
+  id: "caution"
+  prototype: "/main/prefabs/platform/caution.go"
+  position {
+    x: 635.65955
+    y: 152.01056
+  }
+}
+instances {
+  id: "caution1"
+  prototype: "/main/prefabs/platform/caution.go"
+  position {
+    x: 1357.6595
+    y: 355.01056
+  }
+}
+instances {
+  id: "ground"
+  prototype: "/main/prefabs/platform/platform.go"
+}
+instances {
+  id: "player1"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 120.0
+  }
+}
+instances {
+  id: "player2"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 240.0
+  }
+}
+instances {
+  id: "player3"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 360.0
+  }
+}
+instances {
+  id: "ground1"
+  prototype: "/main/prefabs/platform/platform.go"
+}
+instances {
+  id: "player"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 120.0
+  }
+}
+instances {
+  id: "player8"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 240.0
+  }
+}
+instances {
+  id: "player9"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 360.0
+  }
+}
+instances {
+  id: "ground2"
+  prototype: "/main/prefabs/platform/platform.go"
+}
+instances {
+  id: "player10"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 120.0
+  }
+}
+instances {
+  id: "player11"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 240.0
+  }
+}
+instances {
+  id: "player12"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 360.0
+  }
+}
+instances {
+  id: "ground3"
+  prototype: "/main/prefabs/platform/platform.go"
+}
+instances {
+  id: "player13"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 120.0
+  }
+}
+instances {
+  id: "player14"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 240.0
+  }
+}
+instances {
+  id: "player15"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 360.0
+  }
+}
+instances {
+  id: "ground4"
+  prototype: "/main/prefabs/platform/platform.go"
+}
+instances {
+  id: "player16"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 120.0
+  }
+}
+instances {
+  id: "player17"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 240.0
+  }
+}
+instances {
+  id: "player18"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 360.0
+  }
+}
+collection_instances {
+  id: "enemy_prefab"
+  collection: "/main/prefabs/enemy/enemy_prefab.collection"
+  position {
+    x: 1160.0
+    y: 375.0
+  }
+}
+collection_instances {
+  id: "player_prefab"
+  collection: "/main/prefabs/player/player_prefab.collection"
+  position {
+    x: 99.0
+    y: 331.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "camera"
+  children: "background_1"
+  data: "components {\n"
+  "  id: \"camera1\"\n"
+  "  component: \"/main/prefabs/player/scripts/camera.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"camera\"\n"
+  "  type: \"camera\"\n"
+  "  data: \"aspect_ratio: 1.0\\n"
+  "fov: 0.7854\\n"
+  "near_z: -1000.0\\n"
+  "far_z: 1000.0\\n"
+  "orthographic_projection: 1\\n"
+  "orthographic_zoom: 0.65\\n"
+  "orthographic_mode: ORTHO_MODE_AUTO_COVER\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 502.0
+    y: 331.0
+  }
+}
+embedded_instances {
+  id: "foreground"
+  children: "Platform"
+  children: "Platform1"
+  children: "Platform2"
+  children: "Platform3"
+  children: "Platform4"
+  children: "player4"
+  children: "player5"
+  children: "player6"
+  children: "player7"
+  data: ""
+}
+embedded_instances {
+  id: "background"
+  children: "Grass"
+  children: "Grass1"
+  children: "Grass2"
+  children: "Grass3"
+  children: "Grass4"
+  children: "Grass5"
+  children: "Grass6"
+  children: "Tree"
+  children: "caution"
+  children: "caution1"
+  data: ""
+}
+embedded_instances {
+  id: "Platform"
+  children: "ground"
+  children: "player1"
+  children: "player2"
+  children: "player3"
+  data: ""
+  position {
+    x: 520.0
+    y: 79.0
+  }
+}
+embedded_instances {
+  id: "Platform1"
+  children: "ground1"
+  children: "player"
+  children: "player8"
+  children: "player9"
+  data: ""
+  position {
+    x: -84.0
+    y: 79.0
+  }
+}
+embedded_instances {
+  id: "Platform2"
+  children: "ground2"
+  children: "player10"
+  children: "player11"
+  children: "player12"
+  data: ""
+  position {
+    x: 1549.0
+    y: 278.0
+  }
+}
+embedded_instances {
+  id: "Platform3"
+  children: "ground3"
+  children: "player13"
+  children: "player14"
+  children: "player15"
+  data: ""
+  position {
+    x: 974.0
+    y: 544.0
+  }
+}
+embedded_instances {
+  id: "Platform4"
+  children: "ground4"
+  children: "player16"
+  children: "player17"
+  children: "player18"
+  data: ""
+  position {
+    x: 310.0
+    y: 544.0
+  }
+}

@@ -1,0 +1,61 @@
+script: "/main/main_menu.gui_script"
+fonts {
+  name: "always_on_top"
+  font: "/builtins/fonts/debug/always_on_top.font"
+}
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  position {
+    x: 480.0
+    y: 579.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.6
+    y: 0.8
+    z: 0.6
+  }
+  type: TYPE_TEXT
+  text: "VERTIGO"
+  font: "default"
+  id: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 730.0
+    y: 351.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "START"
+  font: "default"
+  id: "start_button"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 730.0
+    y: 239.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "EXIT"
+  font: "default"
+  id: "exit_button"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

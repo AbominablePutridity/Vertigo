@@ -1,0 +1,280 @@
+name: "menu"
+instances {
+  id: "bullet"
+  prototype: "/main/prefabs/bullet/bullet.go"
+  position {
+    x: 582.6792
+    y: 285.0747
+  }
+}
+instances {
+  id: "flight_knife"
+  prototype: "/main/prefabs/knifes/flight_knife.go"
+  position {
+    x: 724.9161
+    y: 222.43793
+  }
+}
+instances {
+  id: "Grass"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 483.4561
+    y: 132.70793
+  }
+}
+instances {
+  id: "background_1"
+  prototype: "/main/prefabs/backgrounds/background_1.go"
+  position {
+    x: -1.471203
+    y: -0.549751
+    z: -7.0
+  }
+  scale3 {
+    x: 0.77
+    y: 0.91
+  }
+}
+instances {
+  id: "player1"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 876.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "player2"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 638.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "player3"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 756.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "player4"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1314.8906
+    y: 276.52295
+  }
+}
+instances {
+  id: "player5"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1179.8906
+    y: 217.52295
+  }
+}
+instances {
+  id: "player6"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 995.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "player7"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 1050.8907
+    y: 155.52296
+  }
+}
+instances {
+  id: "Tree"
+  prototype: "/main/prefabs/backgrounds/additions/Tree.go"
+  position {
+    x: 545.11096
+    y: 259.19595
+  }
+}
+instances {
+  id: "Grass2"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 581.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass5"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 724.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "caution1"
+  prototype: "/main/prefabs/platform/caution.go"
+  position {
+    x: 1357.6595
+    y: 355.01056
+  }
+}
+instances {
+  id: "Grass4"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 676.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "caution"
+  prototype: "/main/prefabs/platform/caution.go"
+  position {
+    x: 631.65955
+    y: 152.01056
+  }
+  rotation {
+    z: -0.04879514
+    w: 0.9988088
+  }
+}
+instances {
+  id: "ground"
+  prototype: "/main/prefabs/platform/platform.go"
+  position {
+    x: 518.8907
+    y: 78.52296
+  }
+}
+instances {
+  id: "Grass1"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 530.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass3"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 629.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass6"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 770.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass7"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 819.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "Grass8"
+  prototype: "/main/prefabs/backgrounds/additions/Grass.go"
+  position {
+    x: 868.45605
+    y: 132.70793
+  }
+}
+instances {
+  id: "caution2"
+  prototype: "/main/prefabs/platform/caution.go"
+  position {
+    x: 830.65955
+    y: 151.01056
+  }
+  rotation {
+    z: 0.014586261
+    w: 0.9998936
+  }
+}
+collection_instances {
+  id: "enemy_prefab"
+  collection: "/main/prefabs/enemy/enemy_prefab.collection"
+  position {
+    x: 1160.0
+    y: 375.0
+  }
+}
+collection_instances {
+  id: "player_prefab"
+  collection: "/main/prefabs/player/player_prefab.collection"
+  position {
+    x: 499.0
+    y: 331.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "camera"
+  children: "background_1"
+  data: "components {\n"
+  "  id: \"camera1\"\n"
+  "  component: \"/main/prefabs/player/scripts/camera.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"camera\"\n"
+  "  type: \"camera\"\n"
+  "  data: \"aspect_ratio: 1.0\\n"
+  "fov: 0.7854\\n"
+  "near_z: -1000.0\\n"
+  "far_z: 1000.0\\n"
+  "orthographic_projection: 1\\n"
+  "orthographic_zoom: 0.65\\n"
+  "orthographic_mode: ORTHO_MODE_AUTO_COVER\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 508.0
+    y: 331.0
+  }
+}
+embedded_instances {
+  id: "GUI"
+  data: "components {\n"
+  "  id: \"menu\"\n"
+  "  component: \"/main/menu.gui\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "scene_obj"
+  children: "Grass1"
+  children: "Grass2"
+  children: "Grass3"
+  children: "Grass4"
+  children: "Grass5"
+  children: "Grass6"
+  children: "Grass7"
+  children: "Grass8"
+  children: "Tree"
+  children: "caution"
+  children: "caution1"
+  children: "caution2"
+  children: "ground"
+  children: "player1"
+  children: "player2"
+  children: "player3"
+  children: "player4"
+  children: "player5"
+  children: "player6"
+  children: "player7"
+  data: ""
+}

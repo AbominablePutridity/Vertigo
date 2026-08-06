@@ -1,0 +1,77 @@
+local current_proxy = nil
+local current_target = nil
+local next_proxy = nil
+
+-- все доступные прокси
+local proxies = {
+	menu = "#menu_proxy",
+	lvl1 = "#lvl1_proxy",
+	lvl2 = "#lvl2_proxy",
+	lvl3 = "#lvl3_proxy",
+}
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+
+	current_proxy = proxies.menu
+
+	msg.post(current_proxy, "load")
+end
+
+function on_input(self, action_id, action)
+	if current_target then
+		msg.post(current_target, "input", {
+			action_id = action_id,
+			action = action
+		})
+	end
+end
+
+function on_message(self, message_id, message, sender)
+
+	-------------------------------------------------------
+	-- Запрос на смену уровня
+	-------------------------------------------------------
+	if message_id == hash("start_game") then
+
+		next_proxy = proxies[message.level]
+
+		if not next_proxy then
+			print("Неизвестный уровень:", message.level)
+			return
+		end
+
+		if current_proxy then
+			msg.post(current_proxy, "unload")
+		end
+
+		current_target = nil
+
+		-------------------------------------------------------
+		-- Старый уровень выгружен
+		-------------------------------------------------------
+	elseif message_id == hash("proxy_unloaded") then
+
+		current_proxy = next_proxy
+		next_proxy = nil
+
+		msg.post(current_proxy, "load")
+
+		-------------------------------------------------------
+		-- Новый уровень загружен
+		-------------------------------------------------------
+	elseif message_id == hash("proxy_loaded") then
+
+		msg.post(sender, "enable")
+		print("Коллекция загружена")
+
+		-------------------------------------------------------
+		-- Новый уровень сообщил, кто принимает ввод
+		-------------------------------------------------------
+	elseif message_id == hash("set_input_target") then
+
+		current_target = message.target
+		print("Цель ввода:", current_target)
+
+	end
+end

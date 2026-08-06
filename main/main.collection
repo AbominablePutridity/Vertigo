@@ -1,152 +1,22 @@
 name: "main"
-instances {
-  id: "ground"
-  prototype: "/main/prefabs/platform/platform.go"
-  position {
-    x: 518.8907
-    y: 78.52296
-  }
-}
-instances {
-  id: "player2"
-  prototype: "/main/prefabs/platform/platform.go"
-  position {
-    x: 648.8907
-    y: 78.52296
-  }
-}
-instances {
-  id: "player3"
-  prototype: "/main/prefabs/platform/platform.go"
-  position {
-    x: 780.8907
-    y: 78.52296
-  }
-}
-instances {
-  id: "player4"
-  prototype: "/main/prefabs/platform/platform.go"
-  position {
-    x: 1314.8906
-    y: 276.52295
-  }
-}
-instances {
-  id: "player5"
-  prototype: "/main/prefabs/platform/platform.go"
-  position {
-    x: 1179.8906
-    y: 217.52295
-  }
-}
-instances {
-  id: "flight_knife"
-  prototype: "/main/prefabs/knifes/flight_knife.go"
-  position {
-    x: 724.9161
-    y: 222.43793
-  }
-}
-instances {
-  id: "background_1"
-  prototype: "/main/prefabs/backgrounds/background_1.go"
-  position {
-    x: -1.471203
-    y: -0.549751
-    z: -7.0
-  }
-  scale3 {
-    x: 0.77
-    y: 0.91
-  }
-}
-instances {
-  id: "player1"
-  prototype: "/main/prefabs/platform/platform.go"
-  position {
-    x: 914.8907
-    y: 81.52296
-  }
-}
-instances {
-  id: "player6"
-  prototype: "/main/prefabs/platform/platform.go"
-  position {
-    x: 1050.8907
-    y: 81.52296
-  }
-}
-instances {
-  id: "player7"
-  prototype: "/main/prefabs/platform/platform.go"
-  position {
-    x: 1050.8907
-    y: 155.52296
-  }
-}
-instances {
-  id: "caution"
-  prototype: "/main/prefabs/platform/caution.go"
-  position {
-    x: 635.65955
-    y: 152.01056
-  }
-}
-instances {
-  id: "caution1"
-  prototype: "/main/prefabs/platform/caution.go"
-  position {
-    x: 1357.6595
-    y: 355.01056
-  }
-}
-instances {
-  id: "bullet"
-  prototype: "/main/prefabs/bullet/bullet.go"
-  position {
-    x: 582.6792
-    y: 285.0747
-  }
-}
-collection_instances {
-  id: "player_prefab"
-  collection: "/main/prefabs/player/player_prefab.collection"
-  position {
-    x: 499.0
-    y: 331.0
-  }
-}
-collection_instances {
-  id: "enemy_prefab"
-  collection: "/main/prefabs/enemy/enemy_prefab.collection"
-  position {
-    x: 1160.0
-    y: 375.0
-  }
-}
 scale_along_z: 0
 embedded_instances {
-  id: "camera"
-  children: "background_1"
+  id: "loader"
   data: "components {\n"
-  "  id: \"camera1\"\n"
-  "  component: \"/main/prefabs/player/scripts/camera.script\"\n"
+  "  id: \"scene_controller\"\n"
+  "  component: \"/main/scene_controller.script\"\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"camera\"\n"
-  "  type: \"camera\"\n"
-  "  data: \"aspect_ratio: 1.0\\n"
-  "fov: 0.7854\\n"
-  "near_z: -1000.0\\n"
-  "far_z: 1000.0\\n"
-  "orthographic_projection: 1\\n"
-  "orthographic_zoom: 0.65\\n"
-  "orthographic_mode: ORTHO_MODE_AUTO_COVER\\n"
+  "  id: \"menu_proxy\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/main/menu.collection\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"lvl1_proxy\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/main/levels/lvl_1.collection\\\"\\n"
   "\"\n"
   "}\n"
   ""
-  position {
-    x: 502.0
-    y: 331.0
-  }
 }
